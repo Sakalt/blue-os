@@ -112,25 +112,6 @@ function openSettings() {
     createWindow('Settings', `<h2>Settings</h2><p>Placeholder for Settings</p>`);
 }
 
-// Function to initialize Paint application
-function setupPaintApp() {
-    const canvas = document.getElementById('paint-canvas');
-    const ctx = canvas.getContext('2d');
-
-    canvas.addEventListener('mousemove', function(e) {
-        if (e.buttons !== 1) return; // Only draw when mouse is clicked
-
-        ctx.beginPath(); // Begin drawing path
-        ctx.lineWidth = 5; // Set line width
-        ctx.lineCap = 'round'; // Set line cap to round
-        ctx.strokeStyle = '#000'; // Set stroke color
-
-        ctx.moveTo(e.offsetX, e.offsetY); // Move to mouse position
-        ctx.lineTo(e.offsetX + 1, e.offsetY + 1); // Draw line to slightly offset position
-        ctx.stroke(); // Perform the actual drawing
-    });
-}
-
 // Function to simulate initial setup
 function initialSetup() {
     const settings = {
@@ -140,18 +121,28 @@ function initialSetup() {
 
     // Simulate saving settings to browser storage
     localStorage.setItem('blueOS_settings', JSON.stringify(settings));
+
+    // Simulate installation progress
+    const installScreen = document.getElementById('install-screen');
+    const installProgress = document.getElementById('install-progress');
+    installScreen.classList.remove('hidden');
+
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.random() * 10; // Simulate progress increase
+        if (progress >= 100) {
+            clearInterval(interval);
+            installScreen.classList.add('hidden');
+            alert('Installation complete!');
+        }
+        installProgress.value = progress;
+    }, 1000);
 }
 
-// Function to load initial settings from browser storage
-function loadInitialSettings() {
-    const storedSettings = localStorage.getItem('blueOS_settings');
-    if (storedSettings) {
-        const settings = JSON.parse(storedSettings);
-        // Apply settings here (for example, change language or theme)
-    }
+// Function to start the Blue OS environment
+function startBlueOS() {
+    initialSetup(); // Simulate initial setup
 }
 
-// Initialize: Load initial settings and add event listener to Start button
-loadInitialSettings();
-document.querySelector('.start-button').addEventListener('click', toggleStartMenu);
-initialSetup(); // Run initial setup
+// Event listeners
+document.addEventListener('DOMContentLoaded', startBlueOS);
