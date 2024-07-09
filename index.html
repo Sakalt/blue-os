@@ -1,39 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue OS - Browser</title>
+    <title>Blue OS - ブラウザ</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="desktop">
-        <!-- Desktop Icons and Windows will be dynamically created here -->
+        <!-- デスクトップ上のアイコンやウィンドウはここに動的に生成されます -->
     </div>
     <div id="taskbar">
-        <button class="start-button" onclick="toggleStartMenu()">Start</button>
+        <button class="start-button" onclick="toggleStartMenu()">スタート</button>
         <div class="start-menu" id="start-menu">
             <div class="start-menu-header">
-                <img src="blueos-icon.png" alt="Blue OS Icon">
+                <img src="blueos-icon.png" alt="Blue OS アイコン">
                 <span>Blue OS</span>
             </div>
             <hr>
             <div class="start-menu-items">
-                <button onclick="openBrowser()">Browser</button>
-                <button onclick="openCalculator()">Calculator</button>
-                <button onclick="openPhotos()">Photos</button>
-                <button onclick="openPaint()">Paint</button>
-                <button onclick="openExplorer()">File Explorer</button>
-                <button onclick="openSettings()">Settings</button>
-                <!-- Add more app buttons as needed -->
+                <button onclick="openBrowser()">ブラウザ</button>
+                <button onclick="openCalculator()">電卓</button>
+                <button onclick="openPhotos()">フォト</button>
+                <button onclick="openPaint()">ペイント</button>
+                <button onclick="openExplorer()">ファイルエクスプローラー</button>
+                <button onclick="openSettings()">設定</button>
+                <!-- 他のアプリケーションのボタンを必要に応じて追加 -->
             </div>
         </div>
     </div>
 
     <div id="install-screen" class="install-screen hidden">
         <div class="install-dialog">
-            <h2>Installing Blue OS</h2>
-            <p>Setting up your Blue OS environment...</p>
+            <h2>Blue OS のセットアップ</h2>
+            <p>Blue OS の環境設定を行っています...</p>
             <progress id="install-progress" max="100"></progress>
         </div>
     </div>
