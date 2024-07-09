@@ -1,13 +1,13 @@
-// Global variables
-let zIndexCounter = 1; // For managing z-index of windows
+// グローバル変数
+let zIndexCounter = 1; // ウィンドウの z-index を管理するためのカウンター
 
-// Function to toggle Start Menu visibility
+// 開始メニューの表示切り替え関数
 function toggleStartMenu() {
     const startMenu = document.getElementById('start-menu');
     startMenu.style.display = startMenu.style.display === 'block' ? 'none' : 'block';
 }
 
-// Function to create a new window
+// 新しいウィンドウを作成する関数
 function createWindow(title, content) {
     const newWindow = document.createElement('div');
     newWindow.className = 'window';
@@ -27,7 +27,7 @@ function createWindow(title, content) {
     makeDraggable(newWindow);
 }
 
-// Function to make a window draggable
+// ウィンドウをドラッグ可能にする関数
 function makeDraggable(element) {
     let isMouseDown = false;
     let offsetX, offsetY;
@@ -37,7 +37,7 @@ function makeDraggable(element) {
         offsetX = e.clientX - element.offsetLeft;
         offsetY = e.clientY - element.offsetTop;
 
-        // Prevent other elements from capturing mouse events during drag
+        // ドラッグ中に他の要素がマウスイベントをキャプチャするのを防ぐ
         e.stopPropagation();
         e.preventDefault();
     });
@@ -54,18 +54,18 @@ function makeDraggable(element) {
     });
 }
 
-// Function to close a window
+// ウィンドウを閉じる関数
 function closeWindow(button) {
     button.closest('.window').remove();
 }
 
-// Function to minimize a window
+// ウィンドウを最小化する関数
 function minimizeWindow(button) {
     const window = button.closest('.window');
     window.style.display = 'none';
 }
 
-// Function to maximize/restore a window
+// ウィンドウを最大化／通常サイズにする関数
 function maximizeWindow(button) {
     const window = button.closest('.window');
     if (window.classList.contains('maximized')) {
@@ -79,70 +79,87 @@ function maximizeWindow(button) {
     }
 }
 
-// Functions to open applications
+// アプリケーションを開くための関数
 function openBrowser() {
-    createWindow('Browser', `<iframe src="https://www.example.com"></iframe>`);
+    createWindow('ブラウザ', `<iframe src="https://www.example.com"></iframe>`);
 }
 
 function openCalculator() {
-    createWindow('Calculator', `
+    createWindow('電卓', `
         <input type="text" id="calc-display" disabled>
         <br>
         <button onclick="inputCalc('1')">1</button>
         <button onclick="inputCalc('2')">2</button>
         <button onclick="inputCalc('3')">3</button>
-        <!-- Add calculator buttons -->
+        <br>
+        <button onclick="inputCalc('4')">4</button>
+        <button onclick="inputCalc('5')">5</button>
+        <button onclick="inputCalc('6')">6</button>
+        <br>
+        <button onclick="inputCalc('7')">7</button>
+        <button onclick="inputCalc('8')">8</button>
+        <button onclick="inputCalc('9')">9</button>
+        <br>
+        <button onclick="inputCalc('0')">0</button>
+        <button onclick="inputCalc('+')">+</button>
+        <button onclick="inputCalc('-')">-</button>
+        <br>
+        <button onclick="inputCalc('*')">*</button>
+        <button onclick="inputCalc('/')">/</button>
+        <button onclick="inputCalc('=')">=</button>
+        <br>
+        <button onclick="clearCalc()">クリア</button>
     `);
 }
 
+function inputCalc(value) {
+    const display = document.getElementById('calc-display');
+    display.value += value;
+}
+
+function clearCalc() {
+    const display = document.getElementById('calc-display');
+    display.value = '';
+}
+
 function openPhotos() {
-    createWindow('Photos', `<p>Placeholder for Photos application</p>`);
+    createWindow('フォト', 'ここに写真の表示領域を配置します');
 }
 
 function openPaint() {
-    createWindow('Paint', `<canvas id="paint-canvas" width="800" height="600"></canvas>`);
-    setupPaintApp();
+    createWindow('ペイント', 'ここにペイントアプリのキャンバスを配置します');
 }
 
 function openExplorer() {
-    createWindow('File Explorer', `<p>Placeholder for File Explorer</p>`);
+    createWindow('ファイルエクスプローラー', 'ここにファイルエクスプローラーのコンテンツを配置します');
 }
 
 function openSettings() {
-    createWindow('Settings', `<h2>Settings</h2><p>Placeholder for Settings</p>`);
+    createWindow('設定', 'ここに設定アプリのコンテンツを配置します');
 }
 
-// Function to simulate initial setup
+// 初期設定をシミュレートする関数
 function initialSetup() {
-    const settings = {
-        language: 'English',
-        theme: 'Light'
-    };
-
-    // Simulate saving settings to browser storage
-    localStorage.setItem('blueOS_settings', JSON.stringify(settings));
-
-    // Simulate installation progress
     const installScreen = document.getElementById('install-screen');
     const installProgress = document.getElementById('install-progress');
     installScreen.classList.remove('hidden');
 
     let progress = 0;
     const interval = setInterval(() => {
-        progress += Math.random() * 10; // Simulate progress increase
+        progress += 10; // シミュレートされた進捗増加
         if (progress >= 100) {
             clearInterval(interval);
             installScreen.classList.add('hidden');
-            alert('Installation complete!');
+            alert('インストールが完了しました！');
         }
         installProgress.value = progress;
     }, 1000);
 }
 
-// Function to start the Blue OS environment
+// Blue OS 環境を開始するための関数
 function startBlueOS() {
-    initialSetup(); // Simulate initial setup
+    initialSetup(); // 初期設定をシミュレート
 }
 
-// Event listeners
+// イベントリスナー
 document.addEventListener('DOMContentLoaded', startBlueOS);
