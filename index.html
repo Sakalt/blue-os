@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue OS - Browser</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="desktop">
+        <!-- Desktop Icons and Windows will be dynamically created here -->
+    </div>
+    <div id="taskbar">
+        <button class="start-button" onclick="toggleStartMenu()">Start</button>
+        <div class="start-menu" id="start-menu">
+            <div class="start-menu-header">
+                <img src="blueos-icon.png" alt="Blue OS Icon">
+                <span>Blue OS</span>
+            </div>
+            <hr>
+            <div class="start-menu-items">
+                <button onclick="openBrowser()">Browser</button>
+                <button onclick="openCalculator()">Calculator</button>
+                <button onclick="openPhotos()">Photos</button>
+                <button onclick="openPaint()">Paint</button>
+                <button onclick="openExplorer()">File Explorer</button>
+                <button onclick="openSettings()">Settings</button>
+                <!-- Add more app buttons as needed -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
